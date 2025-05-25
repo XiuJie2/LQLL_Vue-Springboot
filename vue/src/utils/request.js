@@ -24,7 +24,6 @@ const request = axios.create({
 request.interceptors.request.use(config => {
     config.headers['Content-Type'] = 'application/json;charset=utf-8';
     const user = localStorage.getItem("login-user");
-    console.log(JSON.parse(localStorage.getItem("login-user")));
     if(user) {
         config.headers['token'] = JSON.parse(user).token;
     }

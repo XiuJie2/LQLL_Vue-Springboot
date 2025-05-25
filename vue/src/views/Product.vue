@@ -17,10 +17,16 @@
             action="https://black.ntubbirc.ggff.net/api/product/import"
             :show-file-list="false"
             :on-success="importSuccess"
+            :data="uploadData"
         >
           <el-button type="info">导 入</el-button>
         </el-upload>
-        <el-button type="success" @click="exportData">导 出</el-button>
+        <el-upload
+            style="display: inline-block; margin: 0 12px"
+            :data="uploadData"
+        >
+          <el-button type="success" @click="exportData">导 出</el-button>
+        </el-upload>
       </el-card>
 
       <el-card style="margin-bottom: 5px; ">
@@ -68,7 +74,7 @@
         <!--        <el-form-item label="類別" prop="category">-->
         <!--          <el-input v-model="data.form.category" autocomplete="off" placeholder="请選擇產品類別"/>-->
         <!--        </el-form-item>-->
-        <el-form-item label="類別">
+        <el-form-item label="類別" prop="categoryId">
           <el-select style="width: 100%" v-model="data.form.categoryId">
             <el-option v-for="item in data.categoryList" :key="item.id" :label="item.name" :value="item.id"></el-option>
           </el-select>
@@ -82,6 +88,7 @@
                 action="https://black.ntubbirc.ggff.net/api/files/upload"
                 :show-file-list="false"
                 :on-success="handleAvatarSuccess"
+                :data="uploadData"
             >
               <el-button type="primary">上传圖片</el-button>
             </el-upload>
@@ -139,7 +146,7 @@ const data = reactive({
     name: [
       {required: true, message: '请输入產品名稱', trigger: 'blur'}
     ],
-    category: [
+    categoryId: [
       {required: true, message: '請選擇產品類別', trigger: 'blur'}
     ],
     no: [
@@ -158,8 +165,16 @@ const exportData = () => {
   window.open('https://black.ntubbirc.ggff.net/api/product/export')
 }
 
+const user = JSON.parse(localStorage.getItem("login-user"));
+
+// 上传时的额外参数
+const uploadData = {
+  username: user.username,
+  name: user.name
+};
+
 const handleAvatarSuccess = (res) => {
-  data.form.image = res.data
+  data.form.image = res.data.url
 }
 
 request.get('/category/selectAll').then(res => {
@@ -206,7 +221,12 @@ const reset = () => {
 
 const save = () => {
   formRef.value.validate((valid) => {
-    if (valid) {
+    const no = Number(data.form.no)  // 將輸入轉為數字
+    if (valid && !Number.isInteger(no)) {
+      ElMessage.error('編號必須是整數')
+      return
+    }
+    if(valid){
       data.form.id ? update() : add()
     }
   })

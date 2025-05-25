@@ -11,13 +11,10 @@
       </el-card>
 
       <el-card style="border-radius: 10px; margin-bottom: 5px;">
-        <el-button type="primary" @click="handleAdd">新 增</el-button>
         <el-button type="danger" @click="delBatch">批量删除</el-button>
         <el-upload
             style="display: inline-block; margin: 0 12px"
             action="https://black.ntubbirc.ggff.net/api/log/import"
-            :show-file-list="false"
-            :on-success="importSuccess"
         >
         </el-upload>
         <el-button type="success" @click="exportData">导 出</el-button>

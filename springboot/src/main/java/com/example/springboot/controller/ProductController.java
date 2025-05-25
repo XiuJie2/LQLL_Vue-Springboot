@@ -4,6 +4,7 @@ import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
 import com.example.springboot.common.AutoLog;
 import com.example.springboot.common.Result;
+import com.example.springboot.entity.Account;
 import com.example.springboot.entity.Product;
 import com.example.springboot.service.ProductService;
 import com.github.pagehelper.PageInfo;
@@ -89,7 +90,9 @@ public class ProductController {
     //导出数据
     @GetMapping("/export")
     @AutoLog("導出產品文件")
-    public void export(HttpServletResponse response) throws Exception {
+    public Result export(HttpServletResponse response,
+                       @RequestParam(required = false) String username,
+                       @RequestParam(required = false) String name) throws Exception {
         //1.拿到所有的员工数据
         List<Product> productList = productService.selectAll(null);
         //2.构建 ExcelWriter
@@ -111,12 +114,18 @@ public class ProductController {
         ServletOutputStream os = response.getOutputStream();
         writer.flush(os);
         writer.close();
+        Account account = new Account();
+        account.setUsername(username);
+        account.setName(name);
+        return Result.success(account);
     }
 
     //导入
     @PostMapping("/import")
     @AutoLog("導入產品文件")
-    public Result importData(MultipartFile file) throws Exception{
+    public Result importData(MultipartFile file,
+                             @RequestParam(required = false) String username,
+                             @RequestParam(required = false) String name) throws Exception{
         //1.拿到输入流 构建reader
         InputStream inputStream = file.getInputStream();
         ExcelReader reader =  ExcelUtil.getReader(inputStream);
@@ -131,7 +140,10 @@ public class ProductController {
         for (Product product : productList) {
             productService.add(product);
         }
-        return Result.success(null);
+        Account account = new Account();
+        account.setUsername(username);
+        account.setName(name);
+        return Result.success(account);
     }
 
 

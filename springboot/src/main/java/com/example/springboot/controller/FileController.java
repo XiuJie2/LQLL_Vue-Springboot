@@ -1,11 +1,15 @@
 package com.example.springboot.controller;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.StrUtil;
 import com.example.springboot.common.AutoLog;
 import com.example.springboot.common.Result;
+import com.example.springboot.entity.Account;
 import com.example.springboot.exception.CustomException;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -19,15 +23,20 @@ public class FileController {
     private static final String filePath = System.getProperty("user.dir") + "/files/";
     @PostMapping("/upload") //文件上传接口
     @AutoLog("上傳文件")
-    public Result upload(MultipartFile file){ // 文件流的形式接收前端发过来的文件
+    public Result upload(MultipartFile file,
+                         @RequestParam(required = false) String username,
+                         @RequestParam(required = false) String name) {
+
         String originalFilename = file.getOriginalFilename();
-        if (!FileUtil.isDirectory(filePath)) { //如果目录不存在
-            FileUtil.mkdir(filePath); //创建一个目录
+        if (!FileUtil.isDirectory(filePath)) {
+            FileUtil.mkdir(filePath);
         }
-        //提供文件存储的完整的路径
-        //给文件名一个唯一的标识
+
         String fileName = System.currentTimeMillis() + "_" + originalFilename;
-        String realPath = filePath + fileName; //完整的文件路径
+        String realPath = filePath + fileName;
+        Account account = new Account();
+        account.setUsername(username);
+        account.setName(name);
         try {
             FileUtil.writeBytes(file.getBytes(), realPath);
         } catch (IOException e) {
@@ -35,10 +44,9 @@ public class FileController {
             throw new CustomException("500", "文件上传失败");
         }
 
-        //返回一个网络连接
-        //http://localhost:9090/api/files/download/xxx.jpg
         String url = "https://black.ntubbirc.ggff.net/api/files/download/" + fileName;
-        return Result.success(url);
+        account.setUrl(url);
+        return Result.success(account);
     }
 
     //文件下载接口

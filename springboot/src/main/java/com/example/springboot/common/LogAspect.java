@@ -59,7 +59,12 @@ public class LogAspect {
         }
         // 如果方法回傳 Account 資料，記錄 name 與 username
         Object data = result.getData();
-        if (data instanceof Account) {
+//        if (data instanceof Account) {
+//            Account account = (Account) data;
+//            name = account.getName();
+//            username = account.getUsername();
+//        }
+        if (Objects.equals(name, "")) {
             Account account = (Account) data;
             name = account.getName();
             username = account.getUsername();

@@ -12,8 +12,22 @@
       <el-card style="border-radius: 10px; margin-bottom: 5px;">
         <el-button type="primary" @click="handleAdd">新 增</el-button>
         <el-button type="danger" @click="delBatch">批量删除</el-button>
-        <el-button type="info">导 入</el-button>
-        <el-button type="success">导 出</el-button>
+        <el-upload
+            style="display: inline-block; margin: 0 12px"
+            action="https://black.ntubbirc.ggff.net/api/admin/import"
+            :show-file-list="false"
+            :on-success="importSuccess"
+            :data="uploadData"
+        >
+          <el-button type="info">导 入</el-button>
+        </el-upload>
+
+        <el-upload
+            style="display: inline-block; margin: 0 12px"
+            :data="uploadData"
+        >
+          <el-button type="success" @click="exportData">导 出</el-button>
+        </el-upload>
       </el-card>
 
       <el-card style="margin-bottom: 5px; ">
@@ -65,6 +79,7 @@
                 action="https://black.ntubbirc.ggff.net/api/files/upload"
                 :show-file-list="false"
                 :on-success="handleAvatarSuccess"
+                :data="uploadData"
             >
               <el-button type="primary">上传头像</el-button>
             </el-upload>
@@ -147,6 +162,28 @@ const handleUpdate = (row) => {
   data.form = JSON.parse(JSON.stringify(row)) //深拷贝一个新的对象 用于编辑 这样就不会影响行对象
   data.formVisible = true
 }
+
+const user = JSON.parse(localStorage.getItem("login-user"));
+
+// 上传时的额外参数
+const uploadData = {
+  username: user.username,
+  name: user.name
+};
+
+const importSuccess = (res) => {
+  if (res.code === '200') {
+    ElMessage.success('批量导入数据成功')
+    load()
+  }else {
+    ElMessage.error(res.msg)
+  }
+}
+const exportData = () => {
+  //导出数据 是通过流的形式下载 Excel  打开流的链接 浏览器会自动下载文件
+  window.open('https://black.ntubbirc.ggff.net/api/admin/export')
+}
+
 
 const reset = () => {
   data.name = null

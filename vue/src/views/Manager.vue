@@ -67,8 +67,10 @@
           <el-menu-item index="/manager/password">
             <el-icon><Lock /></el-icon>修改密码
           </el-menu-item>
-          <el-menu-item index="/manager/log">
-            <el-icon><Clock /></el-icon>日誌管理
+
+          <!-- 产品管理菜单，只對 Admin 顯示 -->
+          <el-menu-item index="/manager/log" v-if="data.user.role === 'Admin'">
+            <el-icon><Clock /></el-icon>查看日誌
           </el-menu-item>
           <el-menu-item @click="logout">
             <el-icon><SwitchButton /></el-icon>退出登錄

@@ -17,10 +17,16 @@
             action="https://black.ntubbirc.ggff.net/api/employee/import"
             :show-file-list="false"
             :on-success="importSuccess"
+            :data="uploadData"
         >
           <el-button type="info">导 入</el-button>
         </el-upload>
-        <el-button type="success" @click="exportData">导 出</el-button>
+        <el-upload
+            style="display: inline-block; margin: 0 12px"
+            :data="uploadData"
+        >
+          <el-button type="success" @click="exportData">导 出</el-button>
+        </el-upload>
       </el-card>
 
       <el-card style="margin-bottom: 5px; ">
@@ -76,6 +82,7 @@
                 action="https://black.ntubbirc.ggff.net/api/files/upload"
                 :show-file-list="false"
                 :on-success="handleAvatarSuccess"
+                :data="uploadData"
             >
               <el-button type="primary">上传头像</el-button>
             </el-upload>
@@ -164,6 +171,14 @@ const handleAvatarSuccess = (res) => {
 request.get('/department/selectAll').then(res => {
   data.departmentList = res.data
 })
+
+const user = JSON.parse(localStorage.getItem("login-user"));
+
+// 上传时的额外参数
+const uploadData = {
+  username: user.username,
+  name: user.name
+};
 
 const importSuccess = (res) => {
   if (res.code === '200') {

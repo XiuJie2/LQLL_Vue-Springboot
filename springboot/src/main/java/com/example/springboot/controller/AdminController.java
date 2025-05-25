@@ -1,12 +1,22 @@
 package com.example.springboot.controller;
+import cn.hutool.poi.excel.ExcelReader;
+import cn.hutool.poi.excel.ExcelUtil;
+import cn.hutool.poi.excel.ExcelWriter;
 import com.example.springboot.common.AutoLog;
 import com.example.springboot.common.Result;
+import com.example.springboot.entity.Account;
+import com.example.springboot.entity.Admin;
 import com.example.springboot.entity.Admin;
 import com.example.springboot.service.AdminService;
 import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.InputStream;
+import java.net.URLEncoder;
 import java.util.List;
 //request.js(axios请求，创建统一的前端请求实例) -> Result.java(统一响应包装类) -> Admin.java(实体类-数据模型) -> Controller.java(http入口) -> Service.java(调用接口方法) -> mapper.java(数据访问接口) -> Mapper.xml(SQL映射文件)
 
@@ -76,5 +86,59 @@ public class AdminController {
         adminService.deleteBatch(ids);
         return Result.success(null);
     }
+
+    //导出数据
+    @GetMapping("/export")
+    @AutoLog("導出管理員文件")
+    public Result export(HttpServletResponse response,
+                       @RequestParam(required = false) String username,
+                       @RequestParam(required = false) String name) throws Exception {
+        //1.拿到所有的员工数据
+        List<Admin> adminList = adminService.selectAll(null);
+        //2.构建 ExcelWriter
+        ExcelWriter writer = ExcelUtil.getWriter(true);
+        //3.设置中文表头 以及输出流的头信息
+        writer.addHeaderAlias("name", "名稱");
+        writer.addHeaderAlias("username", "賬號");
+        writer.setOnlyAlias(true); //只导出设定别名的字段
+        //4.写出数据到writer
+        writer.write(adminList, true);
+        //5.设置输出文件的名称
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8");
+        String fileName = URLEncoder.encode("管理員信息", "UTF-8");
+        response.setHeader("Content-Disposition", "attachment;filename=" + fileName + ".xlsx");
+        //6. 写出到输出流 并关闭writer
+        ServletOutputStream os = response.getOutputStream();
+        writer.flush(os);
+        writer.close();
+        Account account = new Account();
+        account.setUsername(username);
+        account.setName(name);
+        return Result.success(account);
+    }
+
+    //导入
+    @PostMapping("/import")
+    @AutoLog("導入管理員文件")
+    public Result importData(MultipartFile file,
+                             @RequestParam(required = false) String username,
+                             @RequestParam(required = false) String name) throws Exception{
+        //1.拿到输入流 构建reader
+        InputStream inputStream = file.getInputStream();
+        ExcelReader reader =  ExcelUtil.getReader(inputStream);
+        //2. 读取Excel里面的数据
+        reader.addHeaderAlias("名稱","name" );
+        reader.addHeaderAlias("賬號","username");
+        List<Admin> adminList = reader.readAll(Admin.class);
+        //写入List数据到数据库
+        for (Admin admin : adminList) {
+            adminService.add(admin);
+        }
+        Account account = new Account();
+        account.setUsername(username);
+        account.setName(name);
+        return Result.success(account);
+    }
+
 
 }

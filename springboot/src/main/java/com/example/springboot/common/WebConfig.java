@@ -23,6 +23,14 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/api/login")
                 .excludePathPatterns("/api/register")
                 .excludePathPatterns("/api/product/selectAll")
-                .excludePathPatterns("/api/files/download/*");
+                .excludePathPatterns("/api/files/**")
+                .excludePathPatterns("/api/employee/export")
+                .excludePathPatterns("/api/admin/export")
+                .excludePathPatterns("/api/product/export")
+                .excludePathPatterns("/api/employee/import")
+                .excludePathPatterns("/api/admin/import")
+                .excludePathPatterns("/api/product/import")
+                .excludePathPatterns("/api/log/export")
+        ;
     }
 }
