@@ -1,0 +1,80 @@
+package com.example.springboot.controller;
+import com.example.springboot.common.AutoLog;
+import com.example.springboot.common.Result;
+import com.example.springboot.entity.Admin;
+import com.example.springboot.service.AdminService;
+import com.github.pagehelper.PageInfo;
+import jakarta.annotation.Resource;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+//request.js(axios请求，创建统一的前端请求实例) -> Result.java(统一响应包装类) -> Admin.java(实体类-数据模型) -> Controller.java(http入口) -> Service.java(调用接口方法) -> mapper.java(数据访问接口) -> Mapper.xml(SQL映射文件)
+
+@CrossOrigin(origins = "*")
+@RestController
+@RequestMapping("/admin")
+public class AdminController {
+
+    @Resource
+    private AdminService adminService;
+
+    @GetMapping("/selectAll") //get: 查询全部的数据库中的内容操作
+    public Result selectAll(Admin admin) {
+        List<Admin> list = adminService.selectAll(admin);
+        return Result.success(list);
+    }
+    @GetMapping("/selectById/{id}") //get: 使用动态的参数查询特定的数据内容
+    public Result selectByfID(@PathVariable Integer id) {
+        Admin admin = adminService.selectById(id);
+        return Result.success(admin);
+    }
+
+    @GetMapping("/selectOne") //get: 使用参数查询特定的数据内容
+    public Result selectOne(@RequestParam Integer id) {
+        Admin admin = adminService.selectById(id);
+        return Result.success(admin);
+    }
+
+    @GetMapping("/selectPage") //get: 可使用页面参数和页面大小做个性化查询
+    public Result selectPage(
+            Admin admin,
+            @RequestParam(defaultValue = "1") Integer pageNum,
+            @RequestParam(defaultValue = "10") Integer pageSize) {
+        PageInfo<Admin> pageInfo = adminService.selectPage(admin,  pageNum, pageSize);
+        return Result.success(pageInfo);
+    }
+
+    //post: 新增操作
+    @PostMapping("/add")
+    @AutoLog("新增管理員")
+    //@RequestBody可以把前端传来的JSON字符串映射为java的对象，或者数组
+    public Result add(@RequestBody Admin admin) {
+        adminService.add(admin);
+        return Result.success(null);
+    }
+
+    //put: 修改操作
+    @PutMapping("/update")
+    @AutoLog("更新管理員")
+    public Result update(@RequestBody Admin admin) {
+        adminService.update(admin);
+        return Result.success(null);
+    }
+
+    //delete: 删除操作
+    @DeleteMapping("/deleteById/{id}")
+    @AutoLog("刪除管理員")
+    public Result deleteById(@PathVariable Integer id) {
+        adminService.deleteById(id);
+        return Result.success(null);
+    }
+
+    //批量删除数据
+    @DeleteMapping("/deleteBatch")
+    @AutoLog("批量刪除管理員")
+    public Result deleteBatch(@RequestBody List<Integer> ids) {
+        adminService.deleteBatch(ids);
+        return Result.success(null);
+    }
+
+}

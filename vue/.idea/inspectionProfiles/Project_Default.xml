@@ -1,0 +1,76 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="12">
+            <item index="0" class="java.lang.String" itemvalue="v-model" />
+            <item index="1" class="java.lang.String" itemvalue="v-if" />
+            <item index="2" class="java.lang.String" itemvalue="setup" />
+            <item index="3" class="java.lang.String" itemvalue="v-else" />
+            <item index="4" class="java.lang.String" itemvalue="v-for" />
+            <item index="5" class="java.lang.String" itemvalue="v-on:click" />
+            <item index="6" class="java.lang.String" itemvalue="@click" />
+            <item index="7" class="java.lang.String" itemvalue=":style" />
+            <item index="8" class="java.lang.String" itemvalue=":src" />
+            <item index="9" class="java.lang.String" itemvalue="#default" />
+            <item index="10" class="java.lang.String" itemvalue="scoped" />
+            <item index="11" class="java.lang.String" itemvalue="#title" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="41">
+            <item index="0" class="java.lang.String" itemvalue="nobr" />
+            <item index="1" class="java.lang.String" itemvalue="noembed" />
+            <item index="2" class="java.lang.String" itemvalue="comment" />
+            <item index="3" class="java.lang.String" itemvalue="noscript" />
+            <item index="4" class="java.lang.String" itemvalue="embed" />
+            <item index="5" class="java.lang.String" itemvalue="script" />
+            <item index="6" class="java.lang.String" itemvalue="el-button" />
+            <item index="7" class="java.lang.String" itemvalue="el-icon" />
+            <item index="8" class="java.lang.String" itemvalue="with" />
+            <item index="9" class="java.lang.String" itemvalue="el-input" />
+            <item index="10" class="java.lang.String" itemvalue="el-select" />
+            <item index="11" class="java.lang.String" itemvalue="el-option" />
+            <item index="12" class="java.lang.String" itemvalue="el-radio-group" />
+            <item index="13" class="java.lang.String" itemvalue="el-radio" />
+            <item index="14" class="java.lang.String" itemvalue="el-radio-button" />
+            <item index="15" class="java.lang.String" itemvalue="el-checkbox-group" />
+            <item index="16" class="java.lang.String" itemvalue="el-checkbox" />
+            <item index="17" class="java.lang.String" itemvalue="el-image" />
+            <item index="18" class="java.lang.String" itemvalue="el-carousel-item" />
+            <item index="19" class="java.lang.String" itemvalue="el-carousel" />
+            <item index="20" class="java.lang.String" itemvalue="router-link" />
+            <item index="21" class="java.lang.String" itemvalue="router-view" />
+            <item index="22" class="java.lang.String" itemvalue="el-date-picker" />
+            <item index="23" class="java.lang.String" itemvalue="el-table" />
+            <item index="24" class="java.lang.String" itemvalue="el-table-column" />
+            <item index="25" class="java.lang.String" itemvalue="el-pagination" />
+            <item index="26" class="java.lang.String" itemvalue="Delete" />
+            <item index="27" class="java.lang.String" itemvalue="el-dialog" />
+            <item index="28" class="java.lang.String" itemvalue="Edit" />
+            <item index="29" class="java.lang.String" itemvalue="el-menu" />
+            <item index="30" class="java.lang.String" itemvalue="el-menu-item" />
+            <item index="31" class="java.lang.String" itemvalue="View" />
+            <item index="32" class="java.lang.String" itemvalue="el-card" />
+            <item index="33" class="java.lang.String" itemvalue="location" />
+            <item index="34" class="java.lang.String" itemvalue="el-sub-menu" />
+            <item index="35" class="java.lang.String" itemvalue="User" />
+            <item index="36" class="java.lang.String" itemvalue="House" />
+            <item index="37" class="java.lang.String" itemvalue="DataAnalysis" />
+            <item index="38" class="java.lang.String" itemvalue="Avatar" />
+            <item index="39" class="java.lang.String" itemvalue="UserFilled" />
+            <item index="40" class="java.lang.String" itemvalue="SwitchButton" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+  </profile>
+</component>

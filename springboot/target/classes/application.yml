@@ -1,0 +1,22 @@
+# 数据库配置
+server:
+  port: 9090
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 'mysql123'
+    url: jdbc:mysql://localhost:3306/Front-Back_Project?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT
+
+pagehelper:
+  helperDialect: mysql
+
+
+# 配置mybatis实体和xml映射
+mybatis:
+  ##映射xml    #classpath對應的是resources
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true #让mybatis框架，将数据库里面的含下划线的字段转成驼峰格式的字段名

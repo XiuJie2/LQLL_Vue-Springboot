@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.mapper.LogMapper">
+    <select id="selectAll" resultType="com.example.springboot.entity.Log">
+        select * from log
+        <where>
+            <if test="name != null">log.name like concat('%', #{name}, '%')</if>
+        </where>
+        <!--        最新的數據在最上面-->
+        order by id desc
+    </select>
+
+<!--    <select id="selectAll" resultType="com.example.springboot.entity.Log">-->
+<!--        select * from log-->
+<!--        <where>-->
+<!--            <if test="name != null">name like concat('%', #{name}, '%')</if>-->
+<!--        </where>-->
+<!--        &lt;!&ndash;        最新的數據在最上面&ndash;&gt;-->
+<!--        order by id desc-->
+<!--    </select>-->
+
+    <insert id="insert" parameterType="com.example.springboot.entity.Log">
+        insert into `log` (name, time, username, ip, type)
+        values (#{name}, #{time}, #{username}, #{ip}, #{type})
+    </insert>
+
+    <update id="updateById" parameterType="com.example.springboot.entity.Log">
+        update `log` set name = #{name}, time = #{time}, username = #{username}, id = #{id}, type = #{type}
+        where id = #{id}
+    </update>
+</mapper>

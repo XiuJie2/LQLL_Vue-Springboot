@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8564dd91-5d41-4812-9aaf-1d7de075653d" name="更改" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="AnnotationType" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="customMavenHome" value="D:\Document\apache-maven-3.9.9" />
+        <option name="localRepository" value="D:\Document\apache-maven-3.9.9\repo" />
+        <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
+        <option name="userSettingsFile" value="D:\Document\apache-maven-3.9.9\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2tksKSjI3zRBGcySEXgM6O3N766" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.SpringbootApplication.executor&quot;: &quot;Run&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Jie/OneDrive - ntub.edu.tw/文件/Front-Back_Project/vue/src/views&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;SQL Dialects&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\Program Files\\ideaIU-2025.1.win\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;应用程序.SpringbootApplication.executor&quot;: &quot;Run&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Jie\OneDrive - ntub.edu.tw\文件\Front-Back_Project\vue\src\views" />
+      <recent name="C:\Users\Jie\OneDrive - ntub.edu.tw\文件\Front-Back_Project\springboot\src\main\resources\mapper" />
+      <recent name="C:\Users\Jie\OneDrive - ntub.edu.tw\文件\Front-Back_Project\springboot\src\main\resources" />
+      <recent name="D:\Document\bilibili青戈Springboot3+Vue项目实战\Front-Back_Project\vue\src\views" />
+      <recent name="D:\Document\bilibili青戈Springboot3+Vue项目实战\Front-Back_Project\springboot\src\main\resources\mapper" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.springboot.controller" />
+      <recent name="com.example.springboot.service" />
+      <recent name="com.example.springboot.mapper" />
+      <recent name="com.example.springboot.entity" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.SpringbootApplication">
+    <configuration name="SpringbootApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.springboot.SpringbootApplication" />
+      <module name="springboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.springboot.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringbootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="21" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <module name="springboot" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.springboot.SpringbootApplication" />
+      <option name="VM_PARAMETERS" value="--enable-native-access=ALL-UNNAMED " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="应用程序.SpringbootApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="8564dd91-5d41-4812-9aaf-1d7de075653d" name="更改" comment="" />
+      <created>1740907342893</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1740907342893</updated>
+      <workItem from="1740907343976" duration="452000" />
+      <workItem from="1740908437204" duration="1522000" />
+      <workItem from="1740909971644" duration="1035000" />
+      <workItem from="1740916441545" duration="2532000" />
+      <workItem from="1740932444559" duration="3855000" />
+      <workItem from="1740966510100" duration="1278000" />
+      <workItem from="1740983838895" duration="9611000" />
+      <workItem from="1741000692991" duration="1074000" />
+      <workItem from="1741021132016" duration="2724000" />
+      <workItem from="1741054596447" duration="2133000" />
+      <workItem from="1741063436603" duration="7003000" />
+      <workItem from="1741074721179" duration="4408000" />
+      <workItem from="1741091554043" duration="2465000" />
+      <workItem from="1741094039457" duration="4072000" />
+      <workItem from="1741098287242" duration="5454000" />
+      <workItem from="1741159119146" duration="12285000" />
+      <workItem from="1741176554460" duration="5026000" />
+      <workItem from="1741183240611" duration="2287000" />
+      <workItem from="1741187988709" duration="2000" />
+      <workItem from="1741188005894" duration="3648000" />
+      <workItem from="1741238762972" duration="1051000" />
+      <workItem from="1741249446057" duration="6683000" />
+      <workItem from="1741256753040" duration="96000" />
+      <workItem from="1741256871466" duration="871000" />
+      <workItem from="1741268460901" duration="619000" />
+      <workItem from="1745372326222" duration="383000" />
+      <workItem from="1745372800004" duration="1528000" />
+      <workItem from="1745375558608" duration="241000" />
+      <workItem from="1746839639179" duration="1136000" />
+      <workItem from="1746840792544" duration="238000" />
+      <workItem from="1746841052149" duration="70000" />
+      <workItem from="1746841140151" duration="234000" />
+      <workItem from="1746842909851" duration="691000" />
+      <workItem from="1746843699064" duration="1601000" />
+      <workItem from="1746856396608" duration="1489000" />
+      <workItem from="1746859978891" duration="292000" />
+      <workItem from="1746860287896" duration="28263000" />
+      <workItem from="1746892189105" duration="4313000" />
+      <workItem from="1746936970400" duration="3682000" />
+      <workItem from="1746972240369" duration="277000" />
+      <workItem from="1746972641521" duration="13111000" />
+      <workItem from="1747018458294" duration="1079000" />
+      <workItem from="1747025238108" duration="12704000" />
+      <workItem from="1747038450301" duration="4515000" />
+      <workItem from="1747047426332" duration="20687000" />
+      <workItem from="1747126068436" duration="11017000" />
+      <workItem from="1747137140893" duration="211000" />
+      <workItem from="1747137415862" duration="2563000" />
+      <workItem from="1747140017698" duration="1820000" />
+      <workItem from="1747141929865" duration="17345000" />
+      <workItem from="1747182717516" duration="14503000" />
+      <workItem from="1747232098933" duration="15744000" />
+      <workItem from="1747286537624" duration="11981000" />
+      <workItem from="1747314388944" duration="6812000" />
+      <workItem from="1747358426027" duration="8100000" />
+      <workItem from="1747379162007" duration="11314000" />
+      <workItem from="1747983367436" duration="54000" />
+      <workItem from="1747983431907" duration="2000" />
+      <workItem from="1747983984060" duration="3040000" />
+      <workItem from="1747993932078" duration="109000" />
+      <workItem from="1747994065070" duration="18000" />
+      <workItem from="1747994172998" duration="27000" />
+      <workItem from="1747994432638" duration="447000" />
+      <workItem from="1747995224480" duration="23000" />
+      <workItem from="1747996550714" duration="524000" />
+      <workItem from="1747997323970" duration="1432000" />
+      <workItem from="1747999608020" duration="19402000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
