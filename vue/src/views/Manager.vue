@@ -20,19 +20,35 @@
       <!-- 左侧导航栏 -->
       <div style="width: 150px; border-right:1px solid #ddd ; min-height: calc(100vh - 60px)">
         <el-menu router :default-active="router.currentRoute.value.path" style="border: 0">
+          <div class="menu-item-wrapper">
           <el-menu-item index="/manager/home"><el-icon><House /></el-icon>系統首頁</el-menu-item>
+          </div>
+
+          <div class="menu-item-wrapper">
           <el-menu-item index="/manager/data"><el-icon><DataAnalysis /></el-icon>數據統計</el-menu-item>
+          </div>
+
+          <div class="menu-item-wrapper">
           <a href="https://liuli.ntubbirc.ggff.net/products.html" target="blank" style="text-decoration: none;">
             <el-menu-item>
               <el-icon><View /></el-icon>
               產品展示
             </el-menu-item>
           </a>
+          </div>
+
+          <div class="menu-item-wrapper">
+            <el-menu-item index="/manager/page"><el-icon><Document /></el-icon>頁面管理</el-menu-item>
+          </div>
+
           <!-- 产品管理菜单，只對 Admin 顯示 -->
+          <div class="menu-item-wrapper">
           <el-menu-item index="/manager/department" v-if="data.user.role === 'Admin'">
               <el-icon><officeBuilding /></el-icon>部門管理
           </el-menu-item>
+          </div>
 
+          <div class="menu-item-wrapper">
           <!-- 产品管理菜单，只對 Admin 顯示 -->
           <el-sub-menu index="1" v-if="data.user.role === 'Admin'">
             <template #title>
@@ -46,7 +62,9 @@
               <el-icon><Present /></el-icon>產品管理
             </el-menu-item>
           </el-sub-menu>
+          </div>
 
+          <div class="menu-item-wrapper">
           <!-- 用戶管理菜单，只對 Admin 顯示 -->
           <el-sub-menu index="2" v-if="data.user.role === 'Admin'">
             <template #title>
@@ -60,21 +78,32 @@
               <el-icon><User /></el-icon>員工信息
             </el-menu-item>
           </el-sub-menu>
+          </div>
 
+          <div class="menu-item-wrapper">
           <el-menu-item index="/manager/person">
             <el-icon><User /></el-icon>個人信息
           </el-menu-item>
+          </div>
+
+          <div class="menu-item-wrapper">
           <el-menu-item index="/manager/password">
             <el-icon><Lock /></el-icon>修改密码
           </el-menu-item>
+          </div>
 
+          <div class="menu-item-wrapper">
           <!-- 产品管理菜单，只對 Admin 顯示 -->
           <el-menu-item index="/manager/log" v-if="data.user.role === 'Admin'">
             <el-icon><Clock /></el-icon>查看日誌
           </el-menu-item>
-          <el-menu-item @click="logout">
+          </div>
+
+          <div class="menu-item-wrapper">
+          <el-menu-item @click="logout" style="background-color:darkorange">
             <el-icon><SwitchButton /></el-icon>退出登錄
           </el-menu-item>
+          </div>
         </el-menu>
       </div>
       <!--  右侧主体区域  -->
@@ -151,5 +180,9 @@ const toggleNavigation = () => {
 
 .el-sub-menu .is-active{
   background-color: #d9f1e6;
+}
+
+.menu-item-wrapper {
+  border-bottom: 2px solid #dcfaf1;
 }
 </style>

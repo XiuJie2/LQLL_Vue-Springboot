@@ -23,7 +23,7 @@
         </el-upload>
 
         <el-upload
-            style="display: inline-block; margin: 0 12px"
+            style="display: inline-block;"
             :data="uploadData"
         >
           <el-button type="success" @click="exportData">导 出</el-button>
@@ -182,6 +182,7 @@ const importSuccess = (res) => {
 const exportData = () => {
   //导出数据 是通过流的形式下载 Excel  打开流的链接 浏览器会自动下载文件
   window.open('https://black.ntubbirc.ggff.net/api/admin/export')
+  request.get('/admin/export/info')
 }
 
 

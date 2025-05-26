@@ -2,7 +2,7 @@
   <div class="home">
     <!-- 品牌理念區塊 -->
     <div class="hero">
-      <img src="@/assets/brandLogo.png" width="800px" alt="logo" class="logo" />
+      <img src="@/assets/brandLogo.png" width="70%" alt="logo" class="logo" />
       <p class="slogan">緬甸礦脈的天然饋贈 · 東方美學的當代詮釋</p>
       <p class="subtitle">精選緬甸八大場口頂級翡翠原石，傳承百年玉雕工藝</p>
     </div>

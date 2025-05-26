@@ -13,7 +13,7 @@
       <el-card style="border-radius: 10px; margin-bottom: 5px;">
         <el-button type="danger" @click="delBatch">批量删除</el-button>
         <el-upload
-            style="display: inline-block; margin: 0 12px"
+            style="display: inline-block; margin: 0 8px"
             action="https://black.ntubbirc.ggff.net/api/log/import"
         >
         </el-upload>
@@ -27,6 +27,7 @@
           <el-table-column prop="name" label="操作人"/>
           <el-table-column prop="username" label="操作人賬號"/>
           <el-table-column prop="type" label="操作內容"/>
+          <el-table-column prop="json" label="詳細信息" show-overflow-tooltip/>
           <el-table-column prop="ip" label="ip地址"/>
           <el-table-column label="操作" align="center" width="100">
             <template #default="scope">
@@ -63,6 +64,7 @@ import {ElMessage, ElMessageBox} from "element-plus";
 const data = reactive({
   name: null,
   username: null,
+  type: null,
   tableData: [],
   pageNum: 1,
   pageSize: 10,
@@ -76,10 +78,12 @@ const data = reactive({
 })
 
 const formRef = ref()
-
+const user = JSON.parse(localStorage.getItem("login-user"));
 const exportData = () => {
   //导出数据 是通过流的形式下载 Excel  打开流的链接 浏览器会自动下载文件
   window.open('https://black.ntubbirc.ggff.net/api/log/export')
+  request.get('/log/export/info')
+  load()
 }
 
 request.get('/category/selectAll').then(res => {
@@ -91,7 +95,8 @@ const load = () => {
     params: {
       pageNum: data.pageNum,
       pageSize: data.pageSize,
-      name :data.name
+      name :data.name,
+      type : data.type
     }
   }).then(res => {
     data.tableData = res.data.list
@@ -103,20 +108,22 @@ load()
 const reset = () => {
   data.name = null
   data.username= null
+  data.type= null
   load()
 }
 
 
 const del = (id) => {
   ElMessageBox.confirm('删除数据后无法恢复，您确认删除吗？', '删除确认', { type: 'warning'}).then(() => {
-    request.delete('/log/deleteById/' +id).then(res => {
-      if (res.code === '200') {
-        ElMessage.success('操作成功')
-        load() //删除后重新加载数据
-      } else {
-        ElMessage.error(res.msg)
-      }
-    })
+    // request.delete('/log/deleteById/' +id).then(res => {
+    //   if (res.code === '200') {
+    //     ElMessage.success('操作成功')
+    //     load() //删除后重新加载数据
+    //   } else {
+    //     ElMessage.error(res.msg)
+    //   }
+    // })
+    ElMessage("要銷毀痕跡，先跟開發人員說明情況哦")
   }).catch()
 }
 
@@ -132,14 +139,15 @@ const delBatch = () => {
     return
   }
   ElMessageBox.confirm('删除数据后无法恢复，您确认删除吗？', '删除确认', { type: 'warning'}).then(() => {
-    request.delete('/log/deleteBatch', {data: data.ids}).then(res => {
-      if (res.code === '200') {
-        ElMessage.success('操作成功')
-        load() //删除后重新加载数据
-      } else {
-        ElMessage.error(res.msg)
-      }
-    })
+    // request.delete('/log/deleteBatch', {data: data.ids}).then(res => {
+    //   if (res.code === '200') {
+    //     ElMessage.success('操作成功')
+    //     load() //删除后重新加载数据
+    //   } else {
+    //     ElMessage.error(res.msg)
+    //   }
+    // })
+    ElMessage.error("做壞事了嗎？要銷毀痕跡！")
   }).catch()
 }
 </script>

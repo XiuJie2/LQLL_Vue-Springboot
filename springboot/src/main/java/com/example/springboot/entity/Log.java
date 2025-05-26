@@ -6,7 +6,16 @@ public class Log {
     private String name;
     private String type;
     private String username;
+    private String json;
     private String ip;
+
+    public String getJson() {
+        return json;
+    }
+
+    public void setJson(String json) {
+        this.json = json;
+    }
 
     public Integer getId() {
         return id;
@@ -56,12 +65,13 @@ public class Log {
         this.ip = ip;
     }
 
-    public Log(Integer id, String time, String name, String username,String type, String ip) {
+    public Log(Integer id, String time, String name, String username,String type, String json, String ip) {
         this.id = id;
         this.name = name;
         this.time = time;
         this.username = username;
         this.type = type;
+        this.json = json;
         this.ip = ip;
     }
 }

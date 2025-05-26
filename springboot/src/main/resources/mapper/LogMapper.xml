@@ -7,6 +7,7 @@
         select * from log
         <where>
             <if test="name != null">log.name like concat('%', #{name}, '%')</if>
+            <if test="type != null">log.type LIKE CONCAT('%', #{type}, '%')</if>
         </where>
         <!--        最新的數據在最上面-->
         order by id desc
@@ -22,12 +23,12 @@
 <!--    </select>-->
 
     <insert id="insert" parameterType="com.example.springboot.entity.Log">
-        insert into `log` (name, time, username, ip, type)
-        values (#{name}, #{time}, #{username}, #{ip}, #{type})
+        insert into `log` (name, time, username, ip, type, json)
+        values (#{name}, #{time}, #{username}, #{ip}, #{type}, #{json})
     </insert>
 
     <update id="updateById" parameterType="com.example.springboot.entity.Log">
-        update `log` set name = #{name}, time = #{time}, username = #{username}, id = #{id}, type = #{type}
+        update `log` set name = #{name}, time = #{time}, username = #{username}, id = #{id}, type = #{type}, json = #{json}
         where id = #{id}
     </update>
 </mapper>

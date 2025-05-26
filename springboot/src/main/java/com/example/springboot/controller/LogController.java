@@ -70,12 +70,17 @@ public class LogController {
         logService.deleteBatch(ids);
         return Result.success(null);
     }
+
+    @GetMapping("/export/info")
+    @AutoLog("導出日誌文件")
+    public Result exportInfo() {
+        Account account = new Account();
+        return Result.success(account);
+    }
+
     //导出数据
     @GetMapping("/export")
-    @AutoLog("導出日誌文件")
-    public Result export(HttpServletResponse response,
-                       @RequestParam(required = false) String username,
-                       @RequestParam(required = false) String name) throws Exception {
+    public void export(HttpServletResponse response) throws Exception {
         //1.拿到所有的员工数据
         List<Log> logList = logService.selectAll(null);
         //2.构建 ExcelWriter
@@ -85,6 +90,7 @@ public class LogController {
         writer.addHeaderAlias("name", "操作人");
         writer.addHeaderAlias("username", "操作賬號");
         writer.addHeaderAlias("type", "操作內容");
+        writer.addHeaderAlias("json", "操作對象");
         writer.addHeaderAlias("ip", "ip地址");
         writer.setOnlyAlias(true); //只导出设定别名的字段
         //4.写出数据到writer
@@ -97,10 +103,6 @@ public class LogController {
         ServletOutputStream os = response.getOutputStream();
         writer.flush(os);
         writer.close();
-        Account account = new Account();
-        account.setUsername(username);
-        account.setName(name);
-        return Result.success(account);
     }
 
 
