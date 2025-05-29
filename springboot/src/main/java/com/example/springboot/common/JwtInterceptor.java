@@ -40,7 +40,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 
         // 2. 验证 token 是否为空
         if (StrUtil.isBlank(token)) {
-            throw new CustomException("500", "无 token，请重新登录");
+            throw new CustomException("500", "無 token，請重新登錄");
         }
 
         String userId;
@@ -50,7 +50,7 @@ public class JwtInterceptor implements HandlerInterceptor {
             userId = jwt.getAudience().get(0);
             role = jwt.getClaim("role").asString(); // 建议登入时签发 token 时加上 role
         } catch (Exception e) {
-            String errMsg = "token 解析失败，请重新登录";
+            String errMsg = "token 解析失敗，請重新登錄";
             log.error(errMsg + ", token=" + token, e);
             throw new CustomException("500", errMsg);
         }

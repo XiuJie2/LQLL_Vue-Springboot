@@ -2,8 +2,8 @@
   <div class="password-container">
     <el-card class="password-card" shadow="hover">
       <div class="password-header">
-        <h2><el-icon><Lock /></el-icon> 修改密码</h2>
-        <p class="password-tip">请确保密码复杂度，建议包含字母、数字和特殊字符</p>
+        <h2><el-icon><Lock /></el-icon> 修改密碼</h2>
+        <p class="password-tip">請確保密碼複雜度，建議包含字母、數字和特殊字符</p>
       </div>
 
       <el-form
@@ -14,12 +14,12 @@
           label-position="left"
           status-icon
       >
-        <el-form-item label="原密码" prop="password">
+        <el-form-item label="原密碼" prop="password">
           <el-input
               v-model="form.password"
               type="password"
               show-password
-              placeholder="请输入当前使用的密码"
+              placeholder="請輸入當前使用的密碼"
               clearable
           >
             <template #prefix>
@@ -28,12 +28,12 @@
           </el-input>
         </el-form-item>
 
-        <el-form-item label="新密码" prop="newPassword">
+        <el-form-item label="新密碼" prop="newPassword">
           <el-input
               v-model="form.newPassword"
               type="password"
               show-password
-              placeholder="8-20位字符，包含字母和数字"
+              placeholder="8-20位字符，包含字母和數字"
               clearable
           >
             <template #prefix>
@@ -41,16 +41,16 @@
             </template>
           </el-input>
           <div class="password-strength" :class="getPasswordStrength(form.newPassword)">
-            密码强度: {{ getPasswordStrengthText(form.newPassword) }}
+            密碼強度: {{ getPasswordStrengthText(form.newPassword) }}
           </div>
         </el-form-item>
 
-        <el-form-item label="确认密码" prop="confirmPassword">
+        <el-form-item label="確認密碼" prop="confirmPassword">
           <el-input
               v-model="form.confirmPassword"
               type="password"
               show-password
-              placeholder="请再次输入新密码"
+              placeholder="請再次輸入新密碼"
               clearable
           >
             <template #prefix>
@@ -120,7 +120,7 @@ const getPasswordStrengthText = (password) => {
 // 验证规则
 const validatePassword = (rule, value, callback) => {
   if (!value) {
-    callback(new Error('请输入原密码'))
+    callback(new Error('請輸入原密碼'))
   } else {
     callback()
   }
@@ -128,11 +128,11 @@ const validatePassword = (rule, value, callback) => {
 
 const validateNewPassword = (rule, value, callback) => {
   if (!value) {
-    callback(new Error('请输入新密码'))
+    callback(new Error('請輸入新密碼'))
   } else if (value.length < 4) {
-    callback(new Error('密码长度不能少于8位'))
+    callback(new Error('密碼長度不能少於8位'))
   } else if (!/[a-zA-Z]/.test(value) || !/\d/.test(value)) {
-    callback(new Error('密码需包含字母和数字'))
+    callback(new Error('密碼需包含字母和數字'))
   } else {
     callback()
   }
@@ -140,9 +140,9 @@ const validateNewPassword = (rule, value, callback) => {
 
 const validateConfirmPassword = (rule, value, callback) => {
   if (!value) {
-    callback(new Error('请再次输入密码'))
+    callback(new Error('請再次輸入密碼'))
   } else if (value !== form.newPassword) {
-    callback(new Error('两次输入的密码不一致'))
+    callback(new Error('兩次輸入的密碼不一致'))
   } else {
     callback()
   }
@@ -173,7 +173,7 @@ const handleSubmit = () => {
 
       if (res.code === '200') {
         ElMessage.success({
-          message: '密码修改成功，请重新登录',
+          message: '密碼修改成功，請重新登錄',
           duration: 1500,
           onClose: () => {
             localStorage.removeItem('login-user')
@@ -181,10 +181,10 @@ const handleSubmit = () => {
           }
         })
       } else {
-        ElMessage.error(res.msg || '密码修改失败')
+        ElMessage.error(res.msg || '密碼修改失敗')
       }
     } catch (error) {
-      ElMessage.error('请求出错：' + error.message)
+      ElMessage.error('請求出錯：' + error.message)
     } finally {
       loading.value = false
     }

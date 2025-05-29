@@ -184,7 +184,7 @@ request.get('/category/selectAll').then(res => {
 
 const importSuccess = (res) => {
   if (res.code === '200') {
-    ElMessage.success('批量导入数据成功')
+    ElMessage.success('批量導入數據成功')
     load()
   }else {
     ElMessage.error(res.msg)
@@ -258,7 +258,7 @@ const update = () => { //修改是用 put
 }
 
 const del = (id) => {
-  ElMessageBox.confirm('删除数据后无法恢复，您确认删除吗？', '删除确认', { type: 'warning'}).then(() => {
+  ElMessageBox.confirm('刪除數據後無法恢復，您確認刪除嗎？', '刪除確認', { type: 'warning'}).then(() => {
     request.delete('/product/deleteById/' +id).then(res => {
       if (res.code === '200') {
         ElMessage.success('操作成功')
@@ -278,10 +278,10 @@ const handleSelectionChange = (row) => {
 
 const delBatch = () => {
   if (data.ids.length === 0) {
-    ElMessage.warning('请选择数据')
+    ElMessage.warning('請選擇數據')
     return
   }
-  ElMessageBox.confirm('删除数据后无法恢复，您确认删除吗？', '删除确认', { type: 'warning'}).then(() => {
+  ElMessageBox.confirm('刪除數據後無法恢復，您確認刪除嗎？', '刪除確認', { type: 'warning'}).then(() => {
     request.delete('/product/deleteBatch', {data: data.ids}).then(res => {
       if (res.code === '200') {
         ElMessage.success('操作成功')

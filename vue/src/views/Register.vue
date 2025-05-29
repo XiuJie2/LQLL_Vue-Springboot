@@ -9,7 +9,7 @@
           <el-input
               type="text"
               v-model="data.form.name"
-              placeholder="请输入您的名称"
+              placeholder="請輸入您的名稱"
               :prefix-icon="User"
               size="large"
           />
@@ -22,7 +22,7 @@
           <el-input
               type="text"
               v-model="data.form.username"
-              placeholder="请输入账号"
+              placeholder="請輸入賬號"
               :prefix-icon="User"
               size="large"
           />
@@ -35,7 +35,7 @@
           <el-input
               type="password"
               v-model="data.form.password"
-              placeholder="请输入密码"
+              placeholder="請輸入密碼"
               :prefix-icon="Lock"
               size="large"
               show-password
@@ -49,7 +49,7 @@
           <el-input
               type="password"
               v-model="data.form.confirmpassword"
-              placeholder="请确认密码"
+              placeholder="請確認密碼"
               :prefix-icon="Lock"
               size="large"
               show-password
@@ -57,10 +57,10 @@
         </div>
       </el-form-item>
 
-      <el-button native-type="submit" class="btn-submit">注册</el-button>
+      <el-button native-type="submit" class="btn-submit">註冊</el-button>
 
       <p class="login-link">
-        <a href="/login">已有账号？登录</a>
+        <a href="/login">已有賬號？ 登錄</a>
       </p>
     </el-form>
   </div>
@@ -77,10 +77,10 @@ const formRef = ref()
 const router = useRouter()
 const validatePass = (rule, value, callback) => {
   if(!value) {
-    callback(new Error('请再次输入密码'))
+    callback(new Error('請再次輸入密碼'))
   }
   else if (value !== data.form.password) {
-    callback(new Error('两次输入密码不一致'))
+    callback(new Error('兩次輸入的密碼不一致'))
   } else {
     callback()
   }
@@ -94,16 +94,16 @@ const data = reactive({
   },
   rules: {
     name: [
-      {required: true, message: '请输入名称', trigger: 'blur'},
-      {min: 1, max: 12, message: '长度在2到10个字符之间', trigger: 'blur'}
+      {required: true, message: '請輸入名稱', trigger: 'blur'},
+      {min: 1, max: 12, message: '長度在2到10個字符之間', trigger: 'blur'}
     ],
     username: [
-      {required: true, message: '请输入账号', trigger: 'blur'},
-      {min: 4, max: 12, message: '长度在6到12个字符之间', trigger: 'blur'}
+      {required: true, message: '請輸入賬號', trigger: 'blur'},
+      {min: 4, max: 12, message: '長度在6到12個字符之間', trigger: 'blur'}
     ],
     password: [
-      {required: true, message: '请输入密码', trigger: 'blur'},
-      {min: 8, message: '至少8个字符', trigger: 'blur'}
+      {required: true, message: '請輸入密碼', trigger: 'blur'},
+      {min: 8, message: '至少8個字符', trigger: 'blur'}
     ],
     confirmpassword: [
       {validator: validatePass, trigger: 'blur'},
@@ -120,7 +120,7 @@ const register = () => {
           .then(res => {
             if (res.code === '200') {
               ElMessage.success({
-                message: '注册成功',
+                message: '註冊成功',
                 duration: 1500,
                 onClose: () => {
                   router.push('/login')
@@ -208,8 +208,7 @@ const register = () => {
 
 /* ✅ input 包裝與 underline */
 .input-wrapper {
-  display: flex;
-  flex-direction: column;
+  width: 80%;
 }
 
 :deep(.el-input__wrapper) {

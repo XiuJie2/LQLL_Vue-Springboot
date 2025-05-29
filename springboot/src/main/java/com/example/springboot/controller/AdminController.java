@@ -96,7 +96,6 @@ public class AdminController {
 
     //导出数据
     @GetMapping("/export")
-    @AutoLog("導出管理員文件")
     public void export(HttpServletResponse response) throws Exception {
         //1.拿到所有的员工数据
         List<Admin> adminList = adminService.selectAll(null);

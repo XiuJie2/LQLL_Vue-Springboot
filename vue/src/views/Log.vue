@@ -2,11 +2,11 @@
   <div>
     <div class="card" style="margin-bottom: 5px; ">
       <el-card style="border-radius: 10px; margin-bottom: 5px;">
-        <el-input style="width: 240px;  margin-right: 5px;" v-model="data.name" placeholder="请输入操作人查询" prefix-icon="Search"></el-input>
-        <el-input style="width: 240px;  margin-right: 5px;" v-model="data.type" placeholder="请输入操作類型查询" prefix-icon="Search"></el-input>
+        <el-input style="width: 240px;  margin-right: 5px;" v-model="data.name" placeholder="請輸入操作人查詢" prefix-icon="Search" @keyup.enter="load" ></el-input>
+        <el-input style="width: 240px;  margin-right: 5px;" v-model="data.type" placeholder="請輸入操作類型查詢" prefix-icon="Search" @keyup.enter="load" ></el-input>
 
 
-        <el-button type="primary" @click="load">查 询</el-button>
+        <el-button type="primary" @click="load">查 詢</el-button>
         <el-button type="warning" @click="reset">重 置</el-button>
       </el-card>
 
@@ -17,7 +17,7 @@
             action="https://black.ntubbirc.ggff.net/api/log/import"
         >
         </el-upload>
-        <el-button type="success" @click="exportData">导 出</el-button>
+        <el-button type="success" @click="exportData">導 出</el-button>
       </el-card>
 
       <el-card style="margin-bottom: 5px; ">
@@ -114,7 +114,7 @@ const reset = () => {
 
 
 const del = (id) => {
-  ElMessageBox.confirm('删除数据后无法恢复，您确认删除吗？', '删除确认', { type: 'warning'}).then(() => {
+  ElMessageBox.confirm('輸出數據後無法恢復，您確認刪除嗎？', '刪除確認', { type: 'warning'}).then(() => {
     // request.delete('/log/deleteById/' +id).then(res => {
     //   if (res.code === '200') {
     //     ElMessage.success('操作成功')
@@ -135,10 +135,10 @@ const handleSelectionChange = (row) => {
 
 const delBatch = () => {
   if (data.ids.length === 0) {
-    ElMessage.warning('请选择数据')
+    ElMessage.warning('請選擇數據')
     return
   }
-  ElMessageBox.confirm('删除数据后无法恢复，您确认删除吗？', '删除确认', { type: 'warning'}).then(() => {
+  ElMessageBox.confirm('刪除數據後無法恢復，您確認刪除嗎？', '刪除確認', { type: 'warning'}).then(() => {
     // request.delete('/log/deleteBatch', {data: data.ids}).then(res => {
     //   if (res.code === '200') {
     //     ElMessage.success('操作成功')

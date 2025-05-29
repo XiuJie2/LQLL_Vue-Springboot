@@ -2,7 +2,7 @@
   <div>
     <div class="card" style="margin-bottom: 5px; ">
       <el-card style="border-radius: 10px; margin-bottom: 5px;">
-        <el-input style="width: 240px;  margin-right: 5px;" v-model="data.name" placeholder="请输入名称查询" prefix-icon="Search">
+        <el-input style="width: 240px;  margin-right: 5px;" v-model="data.name" placeholder="请输入名称查询" prefix-icon="Search" @keyup.enter="load" >
         </el-input>
 
         <el-button type="primary" @click="load">查 询</el-button>
@@ -17,7 +17,7 @@
       <el-card style="margin-bottom: 5px; ">
         <el-table :data="data.tableData" stripe @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="30"></el-table-column>
-          <el-table-column prop="name" label="部门名称"/>
+          <el-table-column prop="name" label="部門名稱"/>
           <el-table-column label="操作" align="center" width="100">
             <template #default="scope">
 <!--              <el-button link type="primary">编辑</el-button>-->
@@ -42,10 +42,10 @@
       </el-card>
     </div>
 
-    <el-dialog title="部门信息" v-model="data.formVisible" width="500" destory-on-close>
+    <el-dialog title="部門信息" v-model="data.formVisible" width="500" destory-on-close>
       <el-form ref="formRef" :rules="data.rule" :model="data.form" label-width="80px" style="padding-right: 40px; padding-top: 20px">
-        <el-form-item label="名称" prop="name">
-          <el-input v-model="data.form.name" autocomplete="off" placeholder="请输入名称"/>
+        <el-form-item label="名稱" prop="name">
+          <el-input v-model="data.form.name" autocomplete="off" placeholder="請輸入名稱"/>
         </el-form-item>
       </el-form>
 
@@ -79,7 +79,7 @@ const data = reactive({
   ids: {},
   rule: {
     name: [
-      {required: true, message: '请输入部门名称', trigger: 'blur'}
+      {required: true, message: '請輸入部門名稱', trigger: 'blur'}
     ],
   }
 })
@@ -152,7 +152,7 @@ const update = () => { //修改是用 put
 }
 
 const del = (id) => {
-  ElMessageBox.confirm('删除数据后无法恢复，您确认删除吗？', '删除确认', { type: 'warning'}).then(() => {
+  ElMessageBox.confirm('刪除數據後無法恢復，您確認刪除嗎？', '刪除確認', { type: 'warning'}).then(() => {
     request.delete('/department/deleteById/' +id).then(res => {
       if (res.code === '200') {
         ElMessage.success('操作成功')
@@ -172,10 +172,10 @@ const handleSelectionChange = (row) => {
 
 const delBatch = () => {
   if (data.ids.length === 0) {
-    ElMessage.warning('请选择数据')
+    ElMessage.warning('請選擇數據')
     return
   }
-  ElMessageBox.confirm('删除数据后无法恢复，您确认删除吗？', '删除确认', { type: 'warning'}).then(() => {
+  ElMessageBox.confirm('刪除數據後無法恢復，您確認刪除嗎？', '刪除確認', { type: 'warning'}).then(() => {
     request.delete('/department/deleteBatch', {data: data.ids}).then(res => {
       if (res.code === '200') {
         ElMessage.success('操作成功')

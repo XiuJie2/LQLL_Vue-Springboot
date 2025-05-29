@@ -6,18 +6,18 @@
         <el-input
             v-model="data.name"
             style="width: 240px; margin-right: 10px;"
-            placeholder="请输入产品名称查询"
+            placeholder="請輸入產品名稱查詢"
             prefix-icon="Search"
             clearable
         />
-        <el-button type="primary" @click="handleSearch">查 询</el-button>
+        <el-button type="primary" @click="handleSearch">查 詢</el-button>
         <el-button @click="handleReset">重 置</el-button>
 
         <div class="operations">
           <el-button type="primary" @click="handleAdd">新 增</el-button>
-          <el-button type="danger" @click="handleBatchDelete">批量删除</el-button>
-          <el-button type="info" @click="handleImport">导 入</el-button>
-          <el-button type="success" @click="handleExport">导 出</el-button>
+          <el-button type="danger" @click="handleBatchDelete">批量刪除</el-button>
+          <el-button type="info" @click="handleImport">導 入</el-button>
+          <el-button type="success" @click="handleExport">導 出</el-button>
         </div>
       </div>
     </el-card>
@@ -32,7 +32,7 @@
                 <el-icon color="#409EFF" :size="24"><Money /></el-icon>
               </div>
               <div class="stat-info">
-                <div class="stat-title">总销售额</div>
+                <div class="stat-title">總銷售額</div>
                 <div class="stat-value">¥ 1,248,560</div>
                 <div class="stat-trend">
                   <span class="up">12.5% <el-icon><Top /></el-icon></span>
@@ -49,7 +49,7 @@
                 <el-icon color="#67C23A" :size="24"><ShoppingCart /></el-icon>
               </div>
               <div class="stat-info">
-                <div class="stat-title">总订单量</div>
+                <div class="stat-title">總訂單量</div>
                 <div class="stat-value">8,642</div>
                 <div class="stat-trend">
                   <span class="up">8.3% <el-icon><Top /></el-icon></span>
@@ -66,7 +66,7 @@
                 <el-icon color="#E6A23C" :size="24"><User /></el-icon>
               </div>
               <div class="stat-info">
-                <div class="stat-title">客户数量</div>
+                <div class="stat-title">客戶數量</div>
                 <div class="stat-value">3,215</div>
                 <div class="stat-trend">
                   <span class="up">5.7% <el-icon><Top /></el-icon></span>
@@ -83,7 +83,7 @@
                 <el-icon color="#F56C6C" :size="24"><Goods /></el-icon>
               </div>
               <div class="stat-info">
-                <div class="stat-title">商品总数</div>
+                <div class="stat-title">商品總數</div>
                 <div class="stat-value">156</div>
                 <div class="stat-trend">
                   <span class="down">2.1% <el-icon><Bottom /></el-icon></span>
@@ -101,7 +101,7 @@
       <el-col :span="12">
         <el-card shadow="hover" class="chart-card">
           <template #header>
-            <div class="chart-title">月度销售额趋势</div>
+            <div class="chart-title">月度銷售額趨勢</div>
           </template>
           <div class="chart-container">
             <v-chart :option="salesChartOption" autoresize />
@@ -111,7 +111,7 @@
       <el-col :span="12">
         <el-card shadow="hover" class="chart-card">
           <template #header>
-            <div class="chart-title">产品销售占比</div>
+            <div class="chart-title">產品銷售佔比</div>
           </template>
           <div class="chart-container">
             <v-chart :option="pieChartOption" autoresize />
@@ -124,7 +124,7 @@
       <el-col :span="24">
         <el-card shadow="hover" class="chart-card">
           <template #header>
-            <div class="chart-title">区域销售排行</div>
+            <div class="chart-title">區域銷售排行</div>
           </template>
           <div class="chart-container">
             <v-chart :option="barChartOption" autoresize />
@@ -143,21 +143,21 @@
       >
         <el-table-column prop="id" label="ID" align="center" />
         <el-table-column prop="date" label="日期" align="center" />
-        <el-table-column prop="productName" label="产品名称"  align="center" />
-        <el-table-column prop="category" label="类别"  align="center">
+        <el-table-column prop="productName" label="產品名稱"  align="center" />
+        <el-table-column prop="category" label="類別"  align="center">
           <template #default="{row}">
             <el-tag :type="getCategoryTagType(row.category)">{{ row.category }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="price" label="单价(¥)"  align="center" />
-        <el-table-column prop="quantity" label="销量"  align="center" />
-        <el-table-column prop="total" label="总金额(¥)" align="center" />
-        <el-table-column prop="region" label="销售区域"  align="center" />
-        <el-table-column prop="salesPerson" label="销售人员" align="center" />
-        <el-table-column label="操作"align="center" fixed="right">
+        <el-table-column prop="price" label="單價(¥)"  align="center" />
+        <el-table-column prop="quantity" label="銷量"  align="center" />
+        <el-table-column prop="total" label="總金額(¥)" align="center" />
+        <el-table-column prop="region" label="銷售區域"  align="center" />
+        <el-table-column prop="salesPerson" label="銷售人員" align="center" />
+        <el-table-column label="操作" align="center" fixed="right">
           <template #default>
-            <el-button size="small" type="primary" plain>编辑</el-button>
-            <el-button size="small" type="danger" plain>删除</el-button>
+            <el-button size="small" type="primary" plain>編輯</el-button>
+            <el-button size="small" type="danger" plain>刪除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -213,16 +213,16 @@ const data = reactive({
   pageSize: 10,
   total: 35,
   tableData: [
-    { id: 1, date: '2024-05-06', productName: '翡翠福镯', category: '手镯', price: 12800, quantity: 4, total: 51200, region: '华东', salesPerson: '张仕杰' },
-    { id: 2, date: '2024-05-05', productName: '冰种翡翠耳坠', category: '耳坠', price: 5600, quantity: 6, total: 33600, region: '华北', salesPerson: '李小明' },
-    { id: 3, date: '2024-05-04', productName: '阳绿平安扣', category: '挂饰', price: 4200, quantity: 3, total: 12600, region: '华南', salesPerson: '王美丽' },
-    { id: 4, date: '2024-05-03', productName: '老坑飘花手镯', category: '手镯', price: 19800, quantity: 2, total: 39600, region: '华东', salesPerson: '张仕杰' },
-    { id: 5, date: '2024-05-02', productName: '翡翠白菜摆件', category: '摆件', price: 8800, quantity: 1, total: 8800, region: '华北', salesPerson: '赵大伟' },
-    { id: 6, date: '2024-05-01', productName: '翡翠叶子吊坠', category: '项链', price: 3600, quantity: 5, total: 18000, region: '华南', salesPerson: '陈小芳' },
-    { id: 7, date: '2024-04-30', productName: '翡翠观音', category: '挂饰', price: 7200, quantity: 2, total: 14400, region: '华东', salesPerson: '张仕杰' },
-    { id: 8, date: '2024-04-29', productName: '翡翠貔貅摆件', category: '摆件', price: 9800, quantity: 1, total: 9800, region: '华北', salesPerson: '李小明' },
-    { id: 9, date: '2024-04-28', productName: '福瓜翡翠吊坠', category: '挂饰', price: 3300, quantity: 4, total: 13200, region: '华南', salesPerson: '王美丽' },
-    { id: 10, date: '2024-04-27', productName: '蛋面翡翠戒指', category: '戒指', price: 6400, quantity: 3, total: 19200, region: '华东', salesPerson: '张仕杰' },
+    { id: 1, date: '2024-05-06', productName: '翡翠福鐲', category: '限量款推薦', price: 12800, quantity: 4, total: 51200, region: '台北', salesPerson: '李仕杰' },
+    { id: 2, date: '2024-05-05', productName: '冰種翡翠耳墜', category: '熱銷榜單', price: 5600, quantity: 6, total: 33600, region: '高雄', salesPerson: '董小姐' },
+    { id: 3, date: '2024-05-04', productName: '陽綠平安扣', category: '高端定制區', price: 4200, quantity: 3, total: 12600, region: '桃園', salesPerson: '王小姐' },
+    { id: 4, date: '2024-05-03', productName: '飄花手鐲', category: '經典收藏區', price: 19800, quantity: 2, total: 39600, region: '新竹', salesPerson: '張小姐' },
+    { id: 5, date: '2024-05-02', productName: '翡翠白菜擺件', category: '翡翠精品區', price: 8800, quantity: 1, total: 8800, region: '新北', salesPerson: '楊小姐' },
+    { id: 6, date: '2024-05-01', productName: '翡翠葉子吊墜', category: '熱銷榜單', price: 3600, quantity: 5, total: 18000, region: '雲林', salesPerson: '陳小姐' },
+    { id: 7, date: '2024-04-30', productName: '翡翠觀音', category: '經典收藏區', price: 7200, quantity: 2, total: 14400, region: '台東', salesPerson: '方小姐' },
+    { id: 8, date: '2024-04-29', productName: '翡翠貔貅摆件', category: '限量款推薦', price: 9800, quantity: 1, total: 9800, region: '嘉義', salesPerson: '宇小姐' },
+    { id: 9, date: '2024-04-28', productName: '福瓜翡翠吊墜', category: '高端定制區', price: 3300, quantity: 4, total: 13200, region: '台南', salesPerson: '黃小姐' },
+    { id: 10, date: '2024-04-27', productName: '蛋面翡翠戒指', category: '翡翠精品區', price: 6400, quantity: 3, total: 19200, region: '南投', salesPerson: '胡小姐' },
   ]
 });
 
@@ -251,7 +251,7 @@ const salesChartOption = reactive({
   },
   yAxis: {
     type: 'value',
-    name: '销售额 (万元)',
+    name: '銷售額 (萬元)',
     axisLine: {
       show: true,
       lineStyle: {
@@ -266,7 +266,7 @@ const salesChartOption = reactive({
   },
   series: [
     {
-      name: '销售额',
+      name: '銷售額',
       type: 'line',
       smooth: true,
       data: [42, 38, 56, 78, 65, 89, 120, 145, 138, 156, 178, 195],
@@ -305,7 +305,7 @@ const pieChartOption = reactive({
   },
   series: [
     {
-      name: '销售占比',
+      name: '銷售佔比',
       type: 'pie',
       radius: ['40%', '70%'],
       avoidLabelOverlap: false,
@@ -329,14 +329,13 @@ const pieChartOption = reactive({
         show: false
       },
       data: [
-        { value: 35, name: '手镯' },
-        { value: 20, name: '耳坠' },
-        { value: 15, name: '挂饰' },
-        { value: 12, name: '摆件' },
-        { value: 10, name: '戒指' },
-        { value: 8, name: '项链' }
+        { value: 20, name: '熱銷榜單' },
+        { value: 15, name: '高端定制區' },
+        { value: 12, name: '經典收藏區' },
+        { value: 10, name: '翡翠精品區' },
+        { value: 8, name: '限量款推薦' }
       ],
-      color: ['#409EFF', '#67C23A', '#E6A23C', '#F56C6C', '#909399', '#B37FEB']
+      color: ['#409EFF', '#67C23A', '#E6A23C', '#F56C6C', '#909399']
     }
   ]
 });
@@ -370,7 +369,7 @@ const barChartOption = reactive({
   },
   yAxis: {
     type: 'category',
-    data: ['华东', '华北', '华南', '华中', '西南', '西北', '东北'],
+    data: ['台北', '台南', '高雄', '新北', '雲林', '台東', '桃園'],
     axisLine: {
       lineStyle: {
         color: '#999'
@@ -379,7 +378,7 @@ const barChartOption = reactive({
   },
   series: [
     {
-      name: '销售额',
+      name: '銷售額',
       type: 'bar',
       data: [125, 110, 95, 85, 75, 60, 50],
       itemStyle: {
@@ -392,7 +391,7 @@ const barChartOption = reactive({
       label: {
         show: true,
         position: 'right',
-        formatter: '{c} 万元'
+        formatter: '{c} 萬元'
       }
     }
   ]
@@ -400,12 +399,11 @@ const barChartOption = reactive({
 
 const getCategoryTagType = (category) => {
   const map = {
-    '手镯': '',
-    '耳坠': 'success',
-    '挂饰': 'warning',
-    '摆件': 'danger',
-    '戒指': 'info',
-    '项链': 'primary'
+    '翡翠精品區': '',
+    '高端定制區': 'success',
+    '限量款推薦': 'warning',
+    '經典收藏區': 'info',
+    '熱銷榜單': 'danger'
   };
   return map[category] || '';
 };
@@ -415,39 +413,39 @@ const handleSearch = () => {
   // 模拟搜索延迟
   setTimeout(() => {
     data.loading = false;
-    ElMessage.success('查询成功');
+    ElMessage.success('查詢成功');
   }, 800);
 };
 
 const handleReset = () => {
   data.name = '';
-  ElMessage.info('已重置搜索条件');
+  ElMessage.info('已重置搜索條件');
 };
 
 const handleAdd = () => {
-  ElMessage.info('点击了新增按钮');
+  ElMessage.info('點擊了新增按鈕');
 };
 
 const handleBatchDelete = () => {
-  ElMessage.warning('点击了批量删除按钮');
+  ElMessage.warning('點擊了批量刪除按鈕');
 };
 
 const handleImport = () => {
-  ElMessage.info('点击了导入按钮');
+  ElMessage.info('點擊了導入按鈕');
 };
 
 const handleExport = () => {
-  ElMessage.success('点击了导出按钮');
+  ElMessage.success('點擊了導出按鈕');
 };
 
 const handleSizeChange = (val) => {
   data.pageSize = val;
-  ElMessage.info(`每页显示 ${val} 条`);
+  ElMessage.info(`每頁顯示 ${val} 條`);
 };
 
 const handleCurrentChange = (val) => {
   data.pageNum = val;
-  ElMessage.info(`当前页: ${val}`);
+  ElMessage.info(`當前頁: ${val}`);
 };
 </script>
 

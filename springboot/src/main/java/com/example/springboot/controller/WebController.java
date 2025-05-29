@@ -41,11 +41,18 @@ public class WebController {
         return Result.success(result);
     }
 
+    @GetMapping("/logout")
+    @AutoLog("退出登錄")
+    public Result exportInfo() {
+        return Result.success(null);
+    }
+
     @PostMapping("/register") //员工注册
     @AutoLog("用戶註冊")
     public Result register(@RequestBody Employee employee) {
         employeeService.register(employee);
-        return Result.success("成功");
+        Account account = employee;
+        return Result.success(account);
     }
 
     @PutMapping("/updatePassword")

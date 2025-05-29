@@ -69,10 +69,10 @@ public class EmployeeService {
         String username = account.getUsername();
         Employee dbEmployee = employeeMapper.selectByUsername(username);
         if(dbEmployee == null) {
-            throw new CustomException("500", "账号不存在");
+            throw new CustomException("500", "賬號不存在");
         }
         if(!account.getPassword().equals(dbEmployee.getPassword())){
-            throw new CustomException("500", "账号或密码错误");
+            throw new CustomException("500", "賬號或密碼錯誤");
         }
         //生成當前用戶對應的token，然後返回到前端
         String token = JwtTokenUtils.genToken(dbEmployee.getId().toString(), dbEmployee.getRole(), dbEmployee.getPassword());
@@ -88,7 +88,7 @@ public class EmployeeService {
         Integer id = account.getId();
         Employee employee = this.selectById(id);
         if (!employee.getPassword().equals(account.getPassword())) { //页面转来的原密码跟数据库密码不匹配的话 报错
-            throw new CustomException("500", "原密码错误, 无法修改密码");
+            throw new CustomException("500", "原密碼錯誤, 無法修改密碼");
         }
         employee.setPassword(account.getNewPassword()); //设置新密码
         this.update(employee);

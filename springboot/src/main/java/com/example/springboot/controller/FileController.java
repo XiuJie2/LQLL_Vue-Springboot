@@ -41,7 +41,7 @@ public class FileController {
             FileUtil.writeBytes(file.getBytes(), realPath);
         } catch (IOException e) {
             e.printStackTrace();
-            throw new CustomException("500", "文件上传失败");
+            throw new CustomException("500", "文件上傳失敗");
         }
 
         String url = "https://black.ntubbirc.ggff.net/api/files/download/" + fileName;
@@ -51,7 +51,6 @@ public class FileController {
 
     //文件下载接口
     @GetMapping("/download/{fileName}")
-    @AutoLog("下載文件")
     public void download(@PathVariable String fileName, HttpServletResponse response) {
         try {
             response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, StandardCharsets.UTF_8));
@@ -62,7 +61,7 @@ public class FileController {
             os.close();
         } catch (IOException e) {
             e.printStackTrace();
-            throw new CustomException("500", "文件下载失败");
+            throw new CustomException("500", "文件下載失敗");
         }
     }
 }

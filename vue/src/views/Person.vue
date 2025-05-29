@@ -38,20 +38,20 @@
         <!-- 基本信息 -->
         <el-row :gutter="20">
           <el-col :span="12">
-            <el-form-item label="名称" prop="name">
+            <el-form-item label="名稱" prop="name">
               <el-input
                   v-model="form.name"
                   :disabled="!isEditMode"
-                  placeholder="请输入名称"
+                  placeholder="請輸入名稱"
               />
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="账号" prop="username">
+            <el-form-item label="賬號" prop="username">
               <el-input
                   v-model="form.username"
                   disabled
-                  placeholder="请输入账号"
+                  placeholder="請輸入賬號"
               />
             </el-form-item>
           </el-col>
@@ -59,16 +59,16 @@
 
         <el-row :gutter="20">
           <el-col :span="12">
-            <el-form-item label="工号" prop="no">
+            <el-form-item label="工號" prop="no">
               <el-input
                   v-model="form.no"
                   disabled
-                  placeholder="请输入工号"
+                  placeholder="請輸入工號"
               />
             </el-form-item>
           </el-col>
           <el-col v-if="form.role === 'User'" :span="12">
-            <el-form-item label="性别" prop="sex">
+            <el-form-item label="性別" prop="sex">
               <el-radio-group v-model="form.sex" :disabled="!isEditMode">
                 <el-radio label="男">男</el-radio>
                 <el-radio label="女">女</el-radio>
@@ -81,7 +81,7 @@
         <template v-if="form.role === 'User'">
           <el-row :gutter="20">
             <el-col :span="12">
-              <el-form-item label="年龄" prop="age">
+              <el-form-item label="年齡" prop="age">
                 <el-input-number
                     v-model="form.age"
                     :min="18"
@@ -93,13 +93,13 @@
             </el-col>
           </el-row>
 
-          <el-form-item label="个人简介" prop="description">
+          <el-form-item label="個人簡介" prop="description">
             <el-input
                 type="textarea"
                 :rows="3"
                 v-model="form.description"
                 :disabled="!isEditMode"
-                placeholder="请输入个人简介"
+                placeholder="請輸入個人簡介"
             />
           </el-form-item>
         </template>
@@ -132,7 +132,7 @@ const form = reactive({
 // 验证规则
 const rules = reactive({
   name: [
-    { required: false, message: '请输入名称', trigger: 'blur' },
+    { required: false, message: '請輸入名稱', trigger: 'blur' },
   ],
 })
 
@@ -178,7 +178,7 @@ const updateUser = () => {
 // 头像上传成功
 const handleAvatarSuccess = (res) => {
   form.avatar = res.data
-  ElMessage.success('头像上传成功')
+  ElMessage.success('頭像上傳成功')
 }
 </script>
 

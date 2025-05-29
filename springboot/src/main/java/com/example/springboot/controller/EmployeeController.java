@@ -90,8 +90,7 @@ public class EmployeeController {
     @GetMapping("/export/info")
     @AutoLog("導出用戶文件")
     public Result exportInfo() {
-        Account account = new Account();
-        return Result.success(account);
+        return Result.success(null);
     }
 
     //导出数据

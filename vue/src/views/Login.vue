@@ -2,38 +2,38 @@
   <div class="login-box">
     <el-form class="login-form" ref="formRef" :model="data.form" :rules="data.rules">
       <h2>綠沁琉璃管理後台</h2>
-      <p class="msg-warn">公共场所不建议自动登录，以防账号丢失</p>
+      <p class="msg-warn">公共場所不建議自動登錄，以防賬號丟失</p>
 
-      <el-form-item class="form-item" prop="username">
+      <el-form-item class="form-item" prop="username" @keyup.enter="login">
         <el-input
             v-model="data.form.username"
-            placeholder="请输入账号"
+            placeholder="請輸入賬號"
             :prefix-icon="User"
             size="large"
         />
       </el-form-item>
 
-      <el-form-item class="form-item" prop="password">
+      <el-form-item class="form-item" prop="password" @keyup.enter="login">
         <el-input
             show-password
             v-model="data.form.password"
-            placeholder="请输入密码"
+            placeholder="請輸入密碼"
             :prefix-icon="Lock"
             size="large"
         />
       </el-form-item>
 
-      <el-form-item class="form-item" prop="role">
+      <el-form-item class="form-item" prop="role" >
         <el-radio-group v-model="data.form.role">
-          <el-radio :value="'User'">用户</el-radio>
-          <el-radio :value="'Admin'">管理员</el-radio>
+          <el-radio :value="'User'">用戶</el-radio>
+          <el-radio :value="'Admin'">管理員</el-radio>
         </el-radio-group>
       </el-form-item>
 
-      <el-button @click="login" class="btn-submit">登录</el-button>
+      <el-button @click="login" class="btn-submit">登錄</el-button>
 
       <p class="register-link">
-        <a href="/register">注册用户</a>
+        <a href="/register">註冊用戶</a>
       </p>
     </el-form>
   </div>
@@ -56,9 +56,9 @@ const data = reactive({
     role: 'User'
   },
   rules: {
-    username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
-    password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
-    role: [{ required: true, message: '请选择角色', trigger: 'change' }]
+    username: [{ required: true, message: '請輸入賬號', trigger: 'blur' }],
+    password: [{ required: true, message: '請輸入密碼', trigger: 'blur' }],
+    role: [{ required: true, message: '請選擇角色', trigger: 'change' }]
   }
 })
 
@@ -68,7 +68,7 @@ const login = () => {
       request.post('/login', data.form).then(res => {
         if (res.code === '200') {
           localStorage.setItem('login-user', JSON.stringify(res.data))
-          ElMessage.success('登录成功')
+          ElMessage.success('登錄成功')
           location.href = '/manager/home'
         } else {
           ElMessage.error(res.msg)

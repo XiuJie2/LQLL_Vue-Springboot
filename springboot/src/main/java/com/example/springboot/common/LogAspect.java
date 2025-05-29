@@ -4,8 +4,6 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.example.springboot.entity.Account;
-import com.example.springboot.entity.Admin;
-import com.example.springboot.entity.Employee;
 import com.example.springboot.entity.Log;
 import com.example.springboot.service.LogService;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -39,50 +37,41 @@ public class LogAspect {
     public Object doAround(ProceedingJoinPoint joinPoint, AutoLog autoLog) throws Throwable {
         String type = autoLog.value();
         String time = DateUtil.now();
+        String ip = getClientIpAddress();
+        String json = serializeParameters(joinPoint.getArgs());
 
+        // 先执行原方法获取结果
+        Result result = (Result) joinPoint.proceed();
+
+        if (result == null) {
+            // 操作失败时记录日志（可选）
+            Log errorLog = new Log(null, time, "SYSTEM", "SYSTEM", type + "-ERROR", json, ip);
+            logService.add(errorLog);
+            return result;
+        }
+
+        // 从结果中获取用户信息
         String username = "";
         String name = "";
 
-        Account user = JwtTokenUtils.getCurrentAccount();
-        if (ObjectUtil.isNotNull(user)) {
-            System.out.print("打印登錄信息"+user);
-            username = user.getUsername();
-            name = user.getName();
-        }
-
-        // 操作人 IP
-        String ip = getClientIpAddress();
-
-        // 執行原方法
-//        Object resultObj = joinPoint.proceed();
-        String json = serializeParameters(joinPoint.getArgs());
-        Result result = (Result) joinPoint.proceed();
-
-
-        if (result == null) {
-            // 這邊可以根據需求設定預設值、記錄日誌，或直接回傳一個錯誤結果
-            return null; // 或你習慣的錯誤處理方式
-        }
-        // 如果方法回傳 Account 資料，記錄 name 與 username
+        // 尝试从结果中获取用户信息
         Object data = result.getData();
-//        if (data instanceof Account) {
-//            Account account = (Account) data;
-//            name = account.getName();
-//            username = account.getUsername();
-//        }
-        Account account = (Account) data;
-        if (Objects.equals(name, "")) {
-            name = account.getName();
+        if (data instanceof Account) {
+            Account account = (Account) data;
             username = account.getUsername();
-        }
-        if (Objects.equals(name, "")) {
-            account.setName("System");
-            account.setUsername("System");
             name = account.getName();
-            username = account.getUsername();
+        } else {
+            // 如果结果中没有用户信息，再尝试从当前会话获取
+            Account currentUser = JwtTokenUtils.getCurrentAccount();
+            if (ObjectUtil.isNotNull(currentUser)) {
+                username = currentUser.getUsername();
+                name = currentUser.getName();
+            }
         }
-        Log log = new Log(null, time, name, username, type, json, ip);
-        logService.add(log);
+
+        // 创建并保存日志
+        Log operationLog = new Log(null, time, name, username, type, json, ip);
+        logService.add(operationLog);
 
         return result;
     }
@@ -93,7 +82,7 @@ public class LogAspect {
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         // 要排除的欄位名稱（敏感或不需要記錄的）
-        Set<String> excludedFields = Set.of("password", "token", "newPassword");
+        Set<String> excludedFields = Set.of("password", "token", "newPassword", "image");
 
         List<Map<String, Object>> filteredList = new ArrayList<>();
 
@@ -159,7 +148,7 @@ public class LogAspect {
             }
             return ip;
         } catch (Exception e) {
-            log.warn("获取客户端IP地址失败", e);
+            log.warn("獲取客戶端IP地址失敗", e);
             return "unknown";
         }
     }

@@ -74,8 +74,7 @@ public class LogController {
     @GetMapping("/export/info")
     @AutoLog("導出日誌文件")
     public Result exportInfo() {
-        Account account = new Account();
-        return Result.success(account);
+        return Result.success(null);
     }
 
     //导出数据
@@ -97,7 +96,7 @@ public class LogController {
         writer.write(logList, true);
         //5.设置输出文件的名称
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8");
-        String fileName = URLEncoder.encode("產品信息", "UTF-8");
+        String fileName = URLEncoder.encode("日誌信息", "UTF-8");
         response.setHeader("Content-Disposition", "attachment;filename=" + fileName + ".xlsx");
         //6. 写出到输出流 并关闭writer
         ServletOutputStream os = response.getOutputStream();

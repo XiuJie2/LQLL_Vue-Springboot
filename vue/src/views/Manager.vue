@@ -8,10 +8,10 @@
 
       </div>
       <div style="flex: 1;"></div>
-      <div style="width: 100px; display: flex; align-content: center">
+      <div style="width: 100px; display: flex; align-content: center;  cursor: pointer;" @click="userinfo">
         <!--        <el-icon :size="45"><Avatar /></el-icon>-->
-        <img :src="data.user.avatar || randomAvatar " alt="" style=" margin-right: 5px; width: 40px; height: 40px; border-radius: 50%;">
-        <span style="width: 200px; display: flex; align-items: center; font-size: 15px; color: white">{{ data.user.name }}</span>
+          <img :src="data.user.avatar || randomAvatar " alt="" style=" margin-right: 5px; width: 40px; height: 40px; border-radius: 50%;">
+          <span style="width: 200px; display: flex; align-items: center; font-size: 15px; color: white" >{{ data.user.name }}</span>
       </div>
     </div>
 
@@ -42,43 +42,43 @@
           </div>
 
           <!-- 产品管理菜单，只對 Admin 顯示 -->
-          <div class="menu-item-wrapper">
-          <el-menu-item index="/manager/department" v-if="data.user.role === 'Admin'">
+
+          <el-menu-item class="menu-item-wrapper" index="/manager/department" v-if="data.user.role === 'Admin'">
               <el-icon><officeBuilding /></el-icon>部門管理
           </el-menu-item>
-          </div>
 
-          <div class="menu-item-wrapper">
+
+
           <!-- 产品管理菜单，只對 Admin 顯示 -->
-          <el-sub-menu index="1" v-if="data.user.role === 'Admin'">
-            <template #title>
-              <el-icon><HelpFilled /></el-icon>
-              <span>產品管理</span>
-            </template>
-            <el-menu-item index="/manager/category">
-              <el-icon><Operation /></el-icon>產品類別
-            </el-menu-item>
-            <el-menu-item index="/manager/product">
-              <el-icon><Present /></el-icon>產品管理
-            </el-menu-item>
+          <el-sub-menu class="menu-item-wrapper" index="1" v-if="data.user.role === 'Admin'">
+              <template #title>
+                <el-icon><HelpFilled /></el-icon>
+                <span>產品管理</span>
+              </template>
+              <el-menu-item index="/manager/category">
+                <el-icon><Operation /></el-icon>產品類別
+              </el-menu-item>
+              <el-menu-item index="/manager/product">
+                <el-icon><Present /></el-icon>產品管理
+              </el-menu-item>
           </el-sub-menu>
-          </div>
 
-          <div class="menu-item-wrapper">
+
+
           <!-- 用戶管理菜单，只對 Admin 顯示 -->
-          <el-sub-menu index="2" v-if="data.user.role === 'Admin'">
-            <template #title>
-              <el-icon><UserFilled /></el-icon>
-              <span>用戶管理</span>
-            </template>
-            <el-menu-item index="/manager/admin">
-              <el-icon><Avatar /></el-icon>管理員信息
-            </el-menu-item>
-            <el-menu-item index="/manager/employee">
-              <el-icon><User /></el-icon>員工信息
-            </el-menu-item>
+          <el-sub-menu  class="menu-item-wrapper" index="2" v-if="data.user.role === 'Admin'">
+              <template #title>
+                <el-icon><UserFilled /></el-icon>
+                <span>用戶管理</span>
+              </template>
+              <el-menu-item index="/manager/admin">
+                <el-icon><Avatar /></el-icon>管理員信息
+              </el-menu-item>
+              <el-menu-item index="/manager/employee">
+                <el-icon><User /></el-icon>員工信息
+              </el-menu-item>
           </el-sub-menu>
-          </div>
+
 
           <div class="menu-item-wrapper">
           <el-menu-item index="/manager/person">
@@ -92,12 +92,12 @@
           </el-menu-item>
           </div>
 
-          <div class="menu-item-wrapper">
+
           <!-- 产品管理菜单，只對 Admin 顯示 -->
-          <el-menu-item index="/manager/log" v-if="data.user.role === 'Admin'">
-            <el-icon><Clock /></el-icon>查看日誌
+          <el-menu-item  class="menu-item-wrapper" index="/manager/log" v-if="data.user.role === 'Admin'">
+              <el-icon><Clock /></el-icon>查看日誌
           </el-menu-item>
-          </div>
+
 
           <div class="menu-item-wrapper">
           <el-menu-item @click="logout" style="background-color:darkorange">
@@ -111,7 +111,7 @@
         <router-view @updateUser="updateUser"></router-view>
         <nav style="margin-bottom: 20px; font-size: 24px; font-weight: bold; padding: 20px">
           <router-link to="/manager/home">主頁</router-link> |
-          <router-link to="/manager/404">副頁</router-link>
+          <router-link to="/manager/test">副頁</router-link>
         </nav>
         <div style="margin-bottom: 30px;">
           <el-button @click="backward" type="success" plain size="default" >後退</el-button>
@@ -143,7 +143,8 @@ const defaultAvatars = [kapiImage]
 // 隨機選一張作為預設
 const randomAvatar = defaultAvatars[Math.floor(Math.random() * defaultAvatars.length)]
 
-import { useRouter } from 'vue-router'; //useRouter() 会自动找到 Vue 应用注册的 router 实例
+import { useRouter } from 'vue-router';
+import request from "@/utils/request.js"; //useRouter() 会自动找到 Vue 应用注册的 router 实例
 
 const data = reactive({
   user: JSON.parse(localStorage.getItem('login-user')) //将Json字符串 转换成Json对象
@@ -154,8 +155,15 @@ const updateUser = () => {
 }
 
 const logout = () => {
-  localStorage.removeItem('login-user') //清除当前登录用户的缓存数据
-  location.href = '/login' //退出登录页面
+  request.get('/logout').then(() => {
+      localStorage.removeItem('login-user')
+      location.href = '/login'
+  })
+}
+
+
+const userinfo = () => {
+    location.href = '/manager/person'
 }
 
 const routers = useRouter(); // ✅ Vue 3 的方式
@@ -165,7 +173,7 @@ const forward = () => routers.go(1);
 let isHomePage = true; // 初始为首页
 const toggleNavigation = () => {
   if (isHomePage) {
-    routers.push('/manager/test'); // 跳转到 /test 页面
+    routers.push('/manager/404'); // 跳转到 /test 页面
   } else {
     routers.push('/manager/home'); // 跳转到首页
   }

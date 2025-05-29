@@ -91,8 +91,7 @@ public class ProductController {
     @GetMapping("/export/info")
     @AutoLog("導出產品文件")
     public Result exportInfo() {
-        Account account = new Account();
-        return Result.success(account);
+        return Result.success(null);
     }
     //导出数据
     @GetMapping("/export")

@@ -79,7 +79,7 @@ public class JwtTokenUtils {
                 return null;
             }
         } catch (Exception e) {
-            log.error("获取当前登录用户信息失败, token={}", token, e);
+            log.error("獲取當前登錄用户信息失敗, token={}", token, e);
             return null;
         }
     }

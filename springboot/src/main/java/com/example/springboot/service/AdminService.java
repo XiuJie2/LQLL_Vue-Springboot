@@ -21,7 +21,7 @@ public class AdminService {
         String username = admin.getUsername();
         Admin dbAdmin = adminMapper.selectByUsername(username);
         if (dbAdmin != null) { //账号已存在 无法新增
-            throw new CustomException("500", "账号已存在，请更换账号！");
+            throw new CustomException("500", "賬號已存在，請更換賬號！");
         }
         if (StrUtil.isBlank(admin.getPassword())){ //密码没填
             admin.setPassword("adminpassword"); //默认密码 adminpassword
@@ -70,11 +70,11 @@ public class AdminService {
         String username = account.getUsername();
         Admin dbAdmin = adminMapper.selectByUsername(username);
         if(dbAdmin == null) { //没有查询到任何用户 说明没有这个账号
-            throw new CustomException("500", "账号不存在");
+            throw new CustomException("500", "賬號不存在");
         }
         String password = account.getPassword();
         if(!dbAdmin.getPassword().equals(password)){
-            throw new CustomException("500", "账号或密码错误"); //用户输入的密码跟数据库账号的密码不匹配
+            throw new CustomException("500", "賬號或密碼錯誤"); //用户输入的密码跟数据库账号的密码不匹配
         }
         //生成當前用戶對應的token，然後返回到前端
         String token = JwtTokenUtils.genToken(dbAdmin.getId().toString(), dbAdmin.getRole(), dbAdmin.getPassword());
@@ -86,7 +86,7 @@ public class AdminService {
         Integer id = account.getId();
         Admin admin = this.selectById(id);
         if (!admin.getPassword().equals(account.getPassword())) { //页面转来的原密码跟数据库密码不匹配的话 报错
-            throw new CustomException("500", "原密码错误，无法修改密码");
+            throw new CustomException("500", "原密碼錯誤，無法修改密碼");
         }
         admin.setPassword(account.getNewPassword()); //设置新密码
         this.update(admin);
