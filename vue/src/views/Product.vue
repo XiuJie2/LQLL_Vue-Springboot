@@ -176,6 +176,7 @@ const uploadData = {
 
 const handleAvatarSuccess = (res) => {
   data.form.image = res.data.url
+  ElMessage.success('圖像上傳成功')
 }
 
 request.get('/category/selectAll').then(res => {

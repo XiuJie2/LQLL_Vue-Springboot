@@ -27,6 +27,7 @@
               :show-file-list="false"
               :on-success="handleAvatarSuccess"
               :disabled="!isEditMode"
+              :data="uploadData"
           >
             <img v-if="form.avatar" :src="form.avatar" class="avatar"/>
             <el-icon v-else class="avatar-uploader-icon">
@@ -177,9 +178,17 @@ const updateUser = () => {
 
 // 头像上传成功
 const handleAvatarSuccess = (res) => {
-  form.avatar = res.data
+  form.avatar = res.data.url
   ElMessage.success('頭像上傳成功')
 }
+
+const user = JSON.parse(localStorage.getItem("login-user"));
+
+// 上传时的额外参数
+const uploadData = {
+  username: user.username,
+  name: user.name
+};
 </script>
 
 <style scoped>
