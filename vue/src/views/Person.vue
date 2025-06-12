@@ -112,12 +112,12 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
-import request from "@/utils/request.js"
+import request from '@/utils/request.js'
 
 const formRef = ref()
 const isEditMode = ref(false)
 
-// 表单数据
+// 表單資料
 const form = reactive({
   id: '',
   name: '',
@@ -130,32 +130,32 @@ const form = reactive({
   description: ''
 })
 
-// 验证规则
+// 驗證規則
 const rules = reactive({
   name: [
-    { required: false, message: '請輸入名稱', trigger: 'blur' },
-  ],
+    { required: false, message: '請輸入名稱', trigger: 'blur' }
+  ]
 })
 
-// 初始化数据
+// 取得當前使用者
+const user = JSON.parse(localStorage.getItem('login-user'))
+form.role = user.role
+
+// 根據角色定義 API 路徑
+const apiBase = form.role === 'User' ? '/employee' : '/admin'
+
+// 初始化資料
 onMounted(() => {
-  const user = JSON.parse(localStorage.getItem('login-user'))
-  form.role = user.role
-
-  if(user.role === 'User') {
-    request.get('/employee/selectById/' + user.id).then(res => {
-      Object.assign(form, res.data)
-    })
-  } else {
-    Object.assign(form, user)
-  }
+  request.get(`${apiBase}/selectById/${user.id}`).then(res => {
+    Object.assign(form, res.data)
+  })
 })
 
-// 切换编辑模式
+// 切換編輯模式
 const toggleEditMode = () => {
-  if(isEditMode.value) {
+  if (isEditMode.value) {
     formRef.value.validate(valid => {
-      if(valid) {
+      if (valid) {
         updateUser()
       }
     })
@@ -163,10 +163,10 @@ const toggleEditMode = () => {
   isEditMode.value = !isEditMode.value
 }
 
-// 更新用户信息
+// 更新使用者資料
 const updateUser = () => {
-  request.put('/employee/update', form).then(res => {
-    if(res.code === '200') {
+  request.put(`${apiBase}/update`, form).then(res => {
+    if (res.code === '200') {
       ElMessage.success('更新成功')
       localStorage.setItem('login-user', JSON.stringify(form))
       emit('updateUser')
@@ -176,20 +176,20 @@ const updateUser = () => {
   })
 }
 
-// 头像上传成功
+// 頭像上傳成功後處理
 const handleAvatarSuccess = (res) => {
   form.avatar = res.data.url
   ElMessage.success('頭像上傳成功')
 }
 
-const user = JSON.parse(localStorage.getItem("login-user"));
-
-// 上传时的额外参数
+// 上傳附加參數
 const uploadData = {
   username: user.username,
   name: user.name
-};
+}
 </script>
+
+
 
 <style scoped>
 .profile-container {
